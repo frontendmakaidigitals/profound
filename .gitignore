@@ -1,0 +1,39 @@
+# Node / frontend
+/node_modules
+/public/hot
+/npm-debug.log
+/yarn-error.log
+
+# Laravel
+/vendor
+/public/storage
+/storage/*.key
+/storage/logs/*
+/storage/framework/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+
+# Environment files
+.env
+.env.backup
+.env.*.backup
+
+# IDE / OS
+/.idea
+/.vscode
+/.editorconfig
+.DS_Store
+Thumbs.db
+
+# Testing / cache
+.phpunit.result.cache
+
+# Docker / Homestead
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+
+/Dump
+
+/public/frontend/assets/images/property
