@@ -20,7 +20,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 16
-          cache: "npm"
 
       - name: Install dependencies
         run: npm install
@@ -37,26 +36,26 @@ jobs:
             public/js
 
   deploy:
-      needs: build
-      runs-on: ubuntu-latest
-      if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
 
-      steps:
-        - name: Download build artifacts
-          uses: actions/download-artifact@v4
-          with:
-            name: mix-build
-            path: .
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: mix-build
 
-        - name: Verify files exist
-          run: ls -R public
+      - name: Verify files
+        run: |
+          ls -R .
 
-        - name: Deploy assets via SSH
-          uses: appleboy/scp-action@v0.1.7
-          with:
-            host: ${{ secrets.SSH_HOST }}
-            username: ${{ secrets.SSH_USER }}
-            key: ${{ secrets.SSH_KEY }}
-            port: ${{ secrets.SSH_PORT }}
-            source: "public/css,public/js"
-            target: ${{ secrets.APP_PATH }}
+      - name: Deploy assets via SSH
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "css,js"
+          target: ${{ secrets.APP_PATH }}/public
